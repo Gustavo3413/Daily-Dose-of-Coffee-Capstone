@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="forms.css" />
+    <title>Login</title>
+  </head>
+
+  <body class="login-page">
+    <!-- Login form start -->
+    <div class="login-form">
+      <div class="admin-login">
+        <a href="index.html" class="form-anchor">
+          <img src="images/DDC Logo.png" alt="Logo" /><br />
+          Back to Home page
+        </a>
+        <h1>Login</h1>
+        <br />
+        <!-- <form>
+          
+          <div class="login">
+            <span class="fas fa-user"></span>
+           
+            <input type="email" placeholder="group6@gmail.com" />
+           
+            
+            <div>
+              <input type="password" placeholder="password" />
+            </div>
+          </div>
+
+          <a href="forgot-password.html" class="forgot-pwd">
+            <p>Forgot password?</p></a
+          >
+          <br />
+          <p align="center">
+            <input
+              type="button"
+              onclick="indexpage()"
+              name="submit"
+              id="submit"
+              value="Login"
+              class="btn"
+            />
+          </p>
+        </form> -->
+
+        <div class="login1" id="login1">
+          <div class="row">
+            <form action="">
+              <div class="inputbox">
+                <span class="fas fa-user"></span>
+                <input type="text" placeholder="name" />
+              </div>
+              <div class="inputbox">
+                <span class="fas fa-envelope"></span>
+                <input type="email" placeholder="group6@gmail.com" />
+              </div>
+              <div class="inputbox">
+                <span class="fas fa-key"></span>
+                <input type="password" placeholder="password" />
+              </div>
+              <input
+                type="button"
+                value="Login"
+                class="btn"
+                onclick="indexpage()"
+              />
+              <a href="forgot-password.html" class="forgot-pwd">
+                <p>Forgot password?</p></a
+              >
+            </form>
+          </div>
+        </div>
+        <br />
+        <a href="register.html" class="form-anchor"
+          ><p>No account? Click here to register!</p>
+        </a>
+        <br />
+      </div>
+    </div>
+    <script src="index.js"></script>
+    <!-- Login form end -->
+  </body>
+</html>

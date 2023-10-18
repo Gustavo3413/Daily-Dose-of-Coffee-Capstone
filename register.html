@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="forms.css" />
+    <title>Register</title>
+  </head>
+
+  <body class="login-page">
+    <!--register form start-->
+    <div class="login-form">
+      <div class="admin-login">
+        <a href="index.html" class="form-anchor">
+          <img src="images/DDC Logo.png" alt="ddc logo" /> <br />
+          Back to Home page</a
+        >
+        <h1>Register</h1>
+        <br />
+        <div class="login1" id="login1">
+          <div class="row">
+            <form action="registration-success.php" method="post">
+              <div class="inputbox">
+                <span class="fas fa-user"></span>
+                <input type="text" placeholder="name" name="name"/>
+              </div>
+              <div class="inputbox">
+                <span class="fas fa-envelope"></span>
+                <input type="email" placeholder="Email" name="email"/>
+              </div>
+              <div class="inputbox">
+                <span class="fas fa-key"></span>
+                <input type="password" placeholder="password" name="password"/>
+              </div>
+              <div class="inputbox">
+                <span class="fas fa-key"></span>
+                <input type="password" placeholder="confirm password" name="confirm-password"/>
+              </div>
+              <input
+                type="submit"
+                value="Register"
+                name="register"
+                class="btn"
+              />
+            </form>
+          </div>
+        </div>
+        <br />
+
+        <br />
+        <a href="login.html" class="form-anchor"
+          ><p>Already has an account? Click here to login!</p></a
+        >
+      </div>
+    </div>
+    <!--register form end-->
+  </body>
+
+  <script src="index.js"></script>
+</html>
