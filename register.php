@@ -9,8 +9,18 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <link rel="stylesheet" href="forms.css" />
+    <style>
+        .row p {
+        color: red;
+        font-weight: bold;
+}
+    </style>
     <title>Register</title>
   </head>
+
+  <?php
+  require('config_session.php');
+  ?>
 
   <body class="login-page">
     <!--register form start-->
@@ -48,12 +58,31 @@
                 class="btn"
               />
             </form>
+
+            <?php
+            if (isset($_SESSION['error_registration'])) {
+                $errors = $_SESSION['error_registration'];
+
+                foreach ($errors as $error) {
+                    echo '</br>';
+                    echo '<p style="color:red;" class="register-error">' . $error . '</p>';
+                }
+
+                unset($_SESSION['error_registration']);
+            } elseif (isset($_GET['registration']) && $_GET['registration'] === 'success') {
+                echo '</br>';
+                echo '<p style="color:green;" class="register-success">Registration successful. You may now <a href="login.php">Log in.</a></p>';
+            }
+            ?>
+
+
+
           </div>
         </div>
         <br />
 
         <br />
-        <a href="user-login.php" class="form-anchor"
+        <a href="login.php" class="form-anchor"
           ><p>Already has an account? Click here to login!</p></a
         >
       </div>

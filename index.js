@@ -24,9 +24,11 @@ window.onscroll = () => {
   searchForm.classList.remove("active");
   cartItem.classList.remove("active");
 };
+
+
 function Loginpage() {
-  window.location.href = "login.html";
+  window.location.href = "login.php";
 }
 function indexpage() {
-  window.location.href = "index.html";
+  window.location.href = "index.php";
 }

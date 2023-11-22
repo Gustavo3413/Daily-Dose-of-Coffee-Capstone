@@ -9,27 +9,33 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <style>
+        p {
+            color: #fff;
+        }
+    </style>
     <title>Account Registered</title>
 </head>
 
 <body>
     <?php
-        require('user_database.php');
+        require('database.php');
+        require('config_session.php');
 
         //created empty array for error messages to count errors 
         $errors = [];
 
         //Validating name input regarding if field is empty or not     
-        if (!empty($_REQUEST['name'])) {
-            $name = $_REQUEST['name'];
+        if (!empty($_REQUEST['username'])) {
+            $username = $_REQUEST['username'];
         } else {
-            $name = NULL;
+            $username = NULL;
             $errors[] = '<p class="error">Please enter your name</p>';
         }
 
         //Validating name input regarding use of only letters from the alphabet
-        if (preg_match("/[^a-zA-Z]+/", $name)) {
-            $name = NULL;
+        if (preg_match("/[^a-zA-Z]+/", $username)) {
+            $username = NULL;
             $errors[] = '<p class="error">Please do not use numbers and special characters in name field.</p>';
         }
 
@@ -47,6 +53,21 @@
         } else {
             $email = NULL;
             $errors[] = '<p class="error">Please enter a valid email adress. e.g. domain@example.com</p>';
+        }
+
+        //Validating if email already exists in database
+        $q = "SELECT email FROM users WHERE email = ?";
+        $stmt = mysqli_prepare($dbc, $q);
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_assoc($result);
+            if ($row['email'] === $email) {
+                $email = NULL;
+                $errors[] = '<p class="error">This email is already registered.</p>';
+            }
         }
 
         //Validating password regarding if password field is empty
@@ -72,19 +93,19 @@
         //preparing data to database
         if(count($errors) == 0) {
 
-            $name_clean = prepare_string($dbc, $name);
+            $username_clean = prepare_string($dbc, $username);
             $email_clean = prepare_string($dbc, $email);
             $password_clean = prepare_string($dbc, $password);
 
 
-            $q = "INSERT INTO users(name, email, password) VALUES(?, ?, ?)";
+            $q = "INSERT INTO users(username, email, password) VALUES(?, ?, ?)";
 
             $stmt = mysqli_prepare($dbc, $q);
 
             mysqli_stmt_bind_param(
                 $stmt,
                 'sss',
-                $name_clean,
+                $username_clean,
                 $email_clean,
                 $password_clean
             );
@@ -92,14 +113,12 @@
             $result = mysqli_stmt_execute($stmt);
             
             if($result) {
-                echo '<p class="heading">Thank you for your registration. You may now login.</p>';
-                echo '<a href="login.html" class="form-anchor">Go to login page</a>';
+                header('Location: register.php?registration=success');
             }
             } else {
-                foreach($errors as $error) {
-                    echo $error;
-        }
-    }
+                $_SESSION["error_registration"] = $errors;
+                header('Location: register.php');
+            }
     ?>
 </body>
 </html>

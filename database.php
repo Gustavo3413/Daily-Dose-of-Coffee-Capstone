@@ -1,6 +1,7 @@
 <?php
 
 	function prepare_string($dbc, $string) {
+		$string = strip_tags($string);
 		$string = mysqli_real_escape_string($dbc, trim($string));
 		return $string;
 	}
