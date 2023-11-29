@@ -20,6 +20,10 @@
 
   <?php
     require('config_session.php');
+
+    if(isset($_SESSION['login'])) {
+      header ('Location: index.php');
+    }
   ?>
 
   <body class="login-page">

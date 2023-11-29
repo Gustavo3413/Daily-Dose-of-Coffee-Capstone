@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="forms.css" />
+    <title>Login</title>
+  </head>
+
+  <body class="login-page">
+    <!-- Login form start -->
+    <div class="login-form">
+      <div class="admin-login">
+        <a href="index.html" class="form-anchor">
+          <img src="images/DDC Logo.png" alt="Logo" /><br />
+          Back to Home page
+        </a>
+        <h1>Login</h1>
+        <br />
+        <form>
+          <label for="username">Username:</label><br />
+          <input
+            type="text"
+            placeholder="username"
+            name="username"
+            title="Use only letters"
+            size="20"
+            class="form-input"
+          /><br />
+          <label for="pwd">Password:</label><br />
+          <input
+            type="password"
+            placeholder="password"
+            name="pwd"
+            size="20"
+            class="form-input"
+          />
+          <a href="forgot-password.html" class="forgot-pwd">
+            <p>Forgot password?</p></a
+          >
+          <br />
+          <p align="center">
+            <input
+              type="submit"
+              name="submit"
+              id="submit"
+              value="Login"
+              class="btn"
+              onclick="indexpage()"
+            />
+          </p>
+        </form>
+        <br />
+        <a href="register.html" class="form-anchor"
+          ><p>No account? Click here to register!</p>
+        </a>
+      </div>
+    </div>
+    <script src="index.js"></script>
+    <!-- Login form end -->
+  </body>
+</html>
