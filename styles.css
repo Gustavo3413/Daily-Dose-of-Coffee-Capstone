@@ -253,6 +253,10 @@ section {
   line-height: 1.8rem; */
 }
 
+.loginspan{
+  color: red;
+}
+
 .admin-login {
   padding-left: 10%;
   padding-right: 10%;
@@ -276,7 +280,40 @@ section {
   margin-bottom: 5vh;
 }
 /* login section ends */
-/* heaer section and navbar and icons ends */
+/* header section and navbar and icons ends */
+/*checkout section starts*/
+.checkout {
+  margin-top: 5vh;
+  /* align-items: center; */
+  padding-top: 12.5%;
+  /* margin-top: 1%; */
+}
+
+.checkout .content {
+  max-width: 60rem;
+}
+
+.checkout .content h3 {
+  font-size: 6rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.checkout .content p {
+  font-size: 2rem;
+  font-weight: lighter;
+  line-height: 1.8;
+  padding: 1rem 0;
+  color: #eee;
+  font-weight: bold;
+}
+
+.checkout .content .checkout-form {
+  background: var(--main-color);
+}
+/*checkout section ends*/
+
+
 /* home section starts */
 .home {
   min-height: 100vh;
@@ -393,6 +430,50 @@ section {
   gap: 1.5rem;
 }
 
+.products .box-container .box:hover {
+  border-radius: 2rem;
+  box-shadow: 0 0 15px rgb(215, 144, 86);
+  background: #fff;
+}
+
+.products .box-container .box {
+  padding: 5rem;
+  text-align: center;
+  border: 1px solid white;
+}
+
+.products .box-container .box img {
+  height: 10rem;
+}
+
+.products .box-container .box h3 {
+  color: #fff;
+  font-size: 2rem;
+  padding: 1rem 0;
+}
+
+.products .box-container .box .price {
+  color: #fff;
+  font-size: 2.5rem;
+  padding: 0.5rem 0;
+}
+
+.products .box-container .box .price span {
+  font-size: 1.5rem;
+  text-decoration: line-through;
+}
+
+.products .box-container .box:hover > * {
+  color: var(--black);
+}
+
+
+/*.products .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1.5rem;
+}
+
 .products .box-container .box {
   padding: 5rem;
   text-align: center;
@@ -425,29 +506,31 @@ section {
   width: 25rem;
 }
 
-.products .box-container .box .content h3 {
+.products .box-container .box h3 {
   color: #fff;
   font-size: 2.5rem;
 }
 
-.products .box-container .box .content .stars {
+.products .box-container .box .stars {
   padding: 1.5rem;
 }
 
-.products .box-container .box .content .stars i {
+.products .box-container .box .stars i {
   font-size: 1.5rem;
   color: var(--main-color);
 }
 
-.products .box-container .box .content .price {
+.products .box-container .box .price {
   color: #fff;
   font-size: 2.5rem;
 }
-.products .box-container .box .content .price span {
+.products .box-container .box .price span {
   text-decoration: line-through;
   font-weight: lighter;
   font-size: 1.5rem;
-}
+}*/
+
+
 /* product section ends */
 /* review section */
 .review .box-container {
@@ -515,6 +598,7 @@ section {
   flex: 1 1 45rem;
   width: 100%;
   object-fit: cover;
+  
 }
 
 .contact .row form {
@@ -556,6 +640,7 @@ section {
   text-transform: none;
   background: none;
 }
+
 /* contact ends */
 /* footer starts */
 .footer {
@@ -610,7 +695,7 @@ section {
   color: var(--main-color);
 }
 
-/* forot password  */
+/* forgot password  */
 /* .login-form .admin-login .username .username {
   display: flex;
   align-items: center;
@@ -709,6 +794,25 @@ section > .login1 .row form {
   text-transform: none;
   background: none;
 }
+
+.errors p {
+  color: #fff;
+}
+
+.row .register-error p {
+  color: red;
+  font-weight: bold;
+}
+
+.row .register-success p {
+  color: green;
+  font-weight: bold;
+}
+
+.row .login-error p {
+  color: red;
+  font-weight: bold;
+} 
 /* forgot password */
 /* footer section ends */
 /*
