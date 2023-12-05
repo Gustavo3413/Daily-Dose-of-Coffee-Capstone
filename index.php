@@ -150,6 +150,7 @@ Media Gathering: Navneet Kaur.
               <span class="fas fa-times"></span>
             </button>
             <input type="hidden" name="item_index" value="<?= $index; ?>">
+            <input type="hidden" name="productid" value="<?= $product['productid']; ?>">
             <div class="content">
               <h3><?= $product['productname']; ?></h3>
               <div class="price" name="price">$<?= number_format($product['price'], 2); ?></div>
@@ -163,14 +164,16 @@ Media Gathering: Navneet Kaur.
         }
       }
       ?>
-
       <div class="total-price">Total: $<?= number_format($total_price, 2); ?></div>
-
-      <div class="checkout-btn" name="checkout-btn"><a href="#" class="btn">checkout now</a></div>
-
-
-
-    </div>  
+      <?php
+      if (isset($_SESSION['shopping_cart'])) {
+        if ($total_price > 0) { ?>
+          <div class="checkout-btn" name="checkout-btn"><a href="checkout.php" class="btn">checkout now</a></div>
+      <?php
+        }
+      }
+      ?>
+    </div>
   </header>
   <!-- header section end -->
   <!-- home section starts Made by Damola -->

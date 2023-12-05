@@ -280,7 +280,40 @@ section {
   margin-bottom: 5vh;
 }
 /* login section ends */
-/* heaer section and navbar and icons ends */
+/* header section and navbar and icons ends */
+/*checkout section starts*/
+.checkout {
+  margin-top: 5vh;
+  /* align-items: center; */
+  padding-top: 12.5%;
+  /* margin-top: 1%; */
+}
+
+.checkout .content {
+  max-width: 60rem;
+}
+
+.checkout .content h3 {
+  font-size: 6rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.checkout .content p {
+  font-size: 2rem;
+  font-weight: lighter;
+  line-height: 1.8;
+  padding: 1rem 0;
+  color: #eee;
+  font-weight: bold;
+}
+
+.checkout .content .checkout-form {
+  background: var(--main-color);
+}
+/*checkout section ends*/
+
+
 /* home section starts */
 .home {
   min-height: 100vh;

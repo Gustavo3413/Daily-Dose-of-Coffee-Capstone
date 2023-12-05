@@ -74,10 +74,14 @@
                 // requiring session start
                 session_start();
                 $_SESSION['user_email'] = $email_clean;
+                $_SESSION['user_id'] = $row['userid'];
                 $_SESSION['login'] = 'success';
                 header('Location: index.php');
             }
-        } else {
+        } elseif (mysqli_num_rows($result) == 0) {
+            $errors[] = '<p class="error">User not found</p>';
+        } 
+        else {
             $_SESSION['error_login'] = $errors;
             header("Location: login.php");
         }

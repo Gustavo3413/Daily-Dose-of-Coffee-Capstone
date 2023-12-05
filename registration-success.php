@@ -20,7 +20,7 @@
 <body>
     <?php
         require('database.php');
-        require('config_session.php');
+        session_start();
 
         //created empty array for error messages to count errors 
         $errors = [];

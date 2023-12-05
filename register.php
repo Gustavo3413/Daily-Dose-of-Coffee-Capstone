@@ -19,7 +19,8 @@
   </head>
 
   <?php
-  require('config_session.php');
+  require('database.php');
+  session_start();
   ?>
 
   <body class="login-page">

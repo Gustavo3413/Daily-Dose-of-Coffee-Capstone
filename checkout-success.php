@@ -6,58 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <title>Daily Dose Of Coffee - Checkout</title>
     <style>
-        .checkout-products {
+        .success-error-msg p {
             margin-top: 5vh;
             /* align-items: center; */
             padding-top: 12.5%;
             /* margin-top: 1%; */
-        }
-
-        .checkout-products .content {
-            max-width: 60rem;
-        }
-
-        .checkout-products .content {
-            font-size: 2rem;
-            font-weight: lighter;
-            line-height: 1.8;
-            padding: 1rem 0;
-            color: black;
-            font-weight: bold;
-        }
-
-        .checkout-products .content h3 {
-            font-size: 6rem;
-            text-transform: uppercase;
-            color: #fff;
-        }
-
-        .checkout-products .content h4 {
+            color: #eee;
             font-size: 3rem;
-            text-transform: uppercase;
-            color: #fff;
-        }
-
-        .checkout-products .content .checkout-form {
-            background: var(--main-color);
-            padding: 10vh;
-        }
-
-        .total-price {
-            color: black;
-            font-size: 2rem;
         }
     </style>
+    <title>Daily Dose Of Coffee - Checkout</title>
 </head>
 
 <body>
 
     <?php
-
+    // requiring database connection file
     require('database.php');
 
+    // starting session
     session_start();
     ?>
 
@@ -192,91 +160,60 @@
         </div>
     </header>
     <!-- header section end -->
-    <!-- checkout section starts Made by Gustavo -->
-    <section class="checkout-products" id="checkout">
-        <div class="content">
-            <h3>Your order</h3>
 
-            <?php
-            if (isset($_SESSION['shopping_cart'])) {?>
+    <!--Error or success message begins-->
+    <section class="success-error-msg">
 
-                    <form class="checkout-form" method="post" action="checkout-success.php">
-                        <?php
-                        foreach ($_SESSION['shopping_cart'] as $index => $product) { 
-                        ?>
-                        <button type="submit" name="delete_item" class="delete-item-btn">
-                            <span class="fas fa-times"></span>
-                        </button>
-                        <input type="hidden" name="item_index" value="<?= $index; ?>">
-                        <input type="hidden" name="productid" value="<?= $product['productid']; ?>">
-                        <div class="content">
-                            <p><?= $product['productname']; ?></p>
-                            <div class="price" name="price">$<?= number_format($product['price'], 2); ?></div>
-                            <label for="quantity">Quantity:</label>
-                            <input type="number" name="new_quantity" value="<?= $product['quantity']; ?>" min="1">
-                            <button type="submit" name="update_quantity">Update Quantity</button>
-                        </div> </br>
-                        <?php
-                        }
-                        ?>
-                        <div class="total-price">Total: $<?= number_format($total_price, 2); ?></div></br>
-                        <h4>Your payment information</h4></br>
-                        <label> Credit Card Number:
-                            <input type="number" name="credit_card_number" id="credit_card_number" placeholder="XXXX-XXXX-XXXX" maxlength="12">
-                        </label></br>
-                        <label> Expiry Date:
-                            <input type="number" name="credit_card" id="credit_card_expiry" placeholder="MMYY" maxlength="4">
-                        </label></br>
-                        <label> CVV:
-                            <input type="number" name="credit_card" id="credit_card_cvv" placeholder="XXX" maxlength="3">
-                        </label>
+        <?php
 
-                        <?php
-                        if (isset($_SESSION['error_checkout'])) {
-                            
-                            
-                            $errors = $_SESSION['error_checkout'];
+        // array created to store errors
+        $errors = [];
 
-                            foreach ($errors as $error) {
-                                echo '</br>';
-                                echo '<p style="color:red;" class="register-error">' . $error . '</p>';
-                            }
 
-                            unset($_SESSION['error_checkout']);
-                        }
-                        ?>
+        if (isset($_SESSION['login'])) {
+            if (isset($_SESSION['shopping_cart'])) {
+                foreach ($_SESSION['shopping_cart'] as $index => $product) {
 
-                    </form>
-                    <div class="checkout-btn" name="checkout-btn"><a href="checkout-success.php" class="btn">Place order</a></div>
+                    $productid = $product['productid'];
+                    $userid = $_SESSION['user_id'];
+                    $price = $product['price'];
 
-            <?php
+                    if (count($errors) == 0) {
+
+
+                        $q = "INSERT INTO sales(productid, userid, price) VALUES(?, ?, ?)";
+
+                        $stmt = mysqli_prepare($dbc, $q);
+
+                        mysqli_stmt_bind_param(
+                            $stmt,
+                            'iii',
+                            $productid,
+                            $userid,
+                            $price,
+                        );
+
+                        $result = mysqli_stmt_execute($stmt);
+                    } else {
+                        $_SESSION["error_checkout"] = $errors;
+                        header('Location: checkout.php');
+                    }
                 }
 
-            ?>
-        </div>
+                if ($result) {
+                    echo "<p>Thank you for ordering. We are already preparing your delicious coffee.</p>";
+                } else {
+                    echo '<p class="error">Oops, something went wrong! Please, try again later.</p>';
+                }
+            } else {
+                echo '<p class="error">You cannot checkout without buying any products!</p>';
+            }
+        } else {
+            header("Location: login.php");
+        } ?>
     </section>
-    <!-- checkout section ends -->
-    <!-- footer section starts made by Gustavo-->
-    <section class="footer">
-        <div class="share">
-            <a href="#" class="fab fa-facebook-f"></a>
-            <a href="#" class="fab fa-twitter"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-pinterest"></a>
-        </div>
-        <div class="links">
-            <a href="index.php#home">Home</a>
-            <a href="index.php#about">About</a>
-            <a href="index.php#menu">Menu</a>
-            <a href="index.php#products">Product</a>
-            <a href="index.php#review">Review</a>
-            <a href="index.php#blogs">Blogs</a>
-            <a href="index.php#contact">Contact</a>
-        </div>
-        <div class="credit">created by <span>GROUP 6</span></div>
-    </section>
-    <!-- footer section ends -->
-    <script src="index.js"></script>
+    <!--Error or success message ends-->
+
 </body>
 
 </html>
