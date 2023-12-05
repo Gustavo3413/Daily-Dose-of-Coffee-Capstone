@@ -814,7 +814,66 @@ section > .login1 .row form {
   font-weight: bold;
 } 
 /* forgot password */
+
+/*dashboard starts*/
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  /* align-items: center; */
+  background-size: cover;
+  background-position: center;
+  padding-top: 12.5%;
+  /* margin-top: 1%; */
+}
+
+.dashboard .content {
+  max-width: 60rem;
+}
+
+.dashboard .content h3 {
+  font-size: 6rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.dashboard .content p {
+  font-size: 2rem;
+  font-weight: lighter;
+  line-height: 1.8;
+  padding: 1rem 0;
+  color: #eee;
+  font-weight: bold;
+}
+
+.login1 .admin-login {
+  padding-left: 20%;
+}
+.dashboard form .inputbox {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background: var(--black);
+  border: var(--border);
+}
+
+.dashboard form .inputbox:hover {
+  box-shadow: 0 0 15px rgb(215, 144, 86);
+}
+
+.dashboard form .inputbox input {
+  width: 100%;
+  padding: 2rem;
+  font-size: 1.7rem;
+  color: #fff;
+  text-transform: none;
+  background: none;
+}
+
+/*dashboard ends*/
+
 /* footer section ends */
+
 /*
 - 
 - 

@@ -62,7 +62,7 @@ Media Gathering: Navneet Kaur.
         <?php
         if (isset($_SESSION['login'])) {
           if (isset($_SESSION['user_email'])) {
-            echo '<p>' . $_SESSION['user_email'] . '</p>';
+            echo '<a style = "text-decoration: none; color: #fff;" href = "dashboard.php">' . $_SESSION['user_email'] . '</a>';
           }
         }
         ?>
