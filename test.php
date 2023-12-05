@@ -7,4 +7,5 @@ foreach($_SESSION['shopping_cart'] as $index => $product) {
     echo $product['productname'], $product['price'], $product['productid'];
 }*/
 echo $_SESSION['user_id'];
+echo $_SESSION['user_name'];
 ?>

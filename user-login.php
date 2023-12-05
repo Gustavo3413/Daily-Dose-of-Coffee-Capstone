@@ -76,6 +76,7 @@
                 $_SESSION['user_email'] = $email_clean;
                 $_SESSION['user_id'] = $row['userid'];
                 $_SESSION['login'] = 'success';
+                $_SESSION['user_name'] = $row['username'];
                 header('Location: index.php');
             }
         } elseif (mysqli_num_rows($result) == 0) {
